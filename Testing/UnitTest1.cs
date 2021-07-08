@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FindMaxValue;
+using System;
 
 
 namespace Testing
@@ -7,42 +8,45 @@ namespace Testing
     [TestClass]
     public class UnitTest1
     {
-        Program three;
+        []
+        SortingClass<int> maxInt;
+        SortingClass<float> maxFloat;
+
+        SortingClass<string> maxString;
         [TestInitialize]
         public void SetUp()
         {
-            three = new Program();
+            string[] arrString = { "Apple", "Banana", "Peach" };
+            maxString = new SortingClass<string>(arrString);
+            int[] arrInt = { 12, 13, 15 };
+            maxInt = new SortingClass<int>(arrInt);
+            float[] arrFloat = { 1.2f, 3.4f, 6.5f };
+            maxFloat = new SortingClass<float>(arrFloat);
         }
         [TestMethod]
-        public void TestingFirstString()
+        public void TestIntMethod()
         {
-            string first = "Peach", second = "Apple", third = "Banana";
-            string expected = first;
 
-            string actual = three.FindMaximumString(first, second, third);
-
+            int expected = 15;
+            int actual = maxInt.MaxMethod();
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void TestingSecondString()
+        public void TestFloatMethod()
         {
-            string first = "Banana", second = "Peach", third = "Apple";
-            string expected = second;
 
-            string actual = three.FindMaximumString(first, second, third);
-
+            float expected = 6.5f;
+            float actual = maxFloat.MaxMethod();
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void TestingThirdString()
+        public void TestStringMethod()
         {
-            string first = "Banana", second = "Apple", third = "Peach";
-            string expected = third;
 
-            string actual = three.FindMaximumString(first, second, third);
-
+            string expected = "Peach";
+            string actual = maxString.MaxMethod();
             Assert.AreEqual(expected, actual);
         }
     }
-
 }
+
